@@ -28,6 +28,7 @@ import com.monsalud.pokepedia.ui.theme.pokemonPlaywriteLightFontFamily
 @Composable
 fun PokemonItem(
     pokemon: Pokemon,
+    modifier: Modifier,
     onPokemonClick: (Pokemon) -> Unit
 ) {
     Card(

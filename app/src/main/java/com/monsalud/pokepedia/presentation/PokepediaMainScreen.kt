@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -59,15 +60,21 @@ fun PokepediaMainScreen(
             .padding(innerPadding)
     ) {
         LazyColumn(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag("PokemonList"),
             contentPadding = PaddingValues(0.dp),
             verticalArrangement = Arrangement.spacedBy(0.dp),
         ) {
             items(items = pokemonListState, key = { pokemon -> pokemon.id }) { pokemon ->
-                PokemonItem(pokemon) { clickedPokemon ->
-                    navController.navigate(Screen.DetailScreen.createRoute(clickedPokemon))
+                PokemonItem(
+                    pokemon = pokemon,
+                    modifier = Modifier.testTag("PokemonItem")
+                ) { clickedPokemon ->
+                        navController.navigate(Screen.DetailScreen.createRoute(clickedPokemon))
+                    }
+
                 }
-            }
             item {
                 if (!isLoading && pokemonListState.isNotEmpty()) {
                     LaunchedEffect(Unit) {
@@ -81,6 +88,7 @@ fun PokepediaMainScreen(
                 modifier = Modifier
                     .size(80.dp)
                     .align(Alignment.Center)
+                    .testTag("LoadingIndicator")
             )
         }
     }

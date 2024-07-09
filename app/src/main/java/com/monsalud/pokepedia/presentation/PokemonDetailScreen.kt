@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -53,7 +54,8 @@ fun PokemonDetailScreen(
                 color = MaterialTheme.colorScheme.tertiary,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-                fontFamily = pokemonPlaywriteLightFontFamily
+                fontFamily = pokemonPlaywriteLightFontFamily,
+                modifier = Modifier.testTag("titleText")
             )
             Spacer(modifier = Modifier.height(16.dp))
             Row(
@@ -63,13 +65,15 @@ fun PokemonDetailScreen(
                     text = "Id: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("idLabel")
                 )
                 Text(
                     text = pokemon.id.toString(),
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("idValue")
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -80,13 +84,15 @@ fun PokemonDetailScreen(
                     text = "Name: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("nameLabel")
                 )
                 Text(
                     text = pokemon.name,
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("nameValue")
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -103,13 +109,15 @@ fun PokemonDetailScreen(
                     text = "Weight: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("weightLabel")
                 )
                 Text(
                     text = pokemon.weight.toString(),
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("weightValue")
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -120,13 +128,15 @@ fun PokemonDetailScreen(
                     text = "Height: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("heightLabel")
                 )
                 Text(
                     text = pokemon.height.toString(),
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("heightValue")
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -137,13 +147,15 @@ fun PokemonDetailScreen(
                     text = "Type: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("typeLabel")
                 )
                 Text(
                     text = pokemon.type,
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("typeValue")
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -154,13 +166,15 @@ fun PokemonDetailScreen(
                     text = "stats: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("statsLabel")
                 )
                 Text(
                     text = pokemon.stats,
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.testTag("statsValue")
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -172,7 +186,7 @@ fun PokemonDetailScreen(
                 contentDescription = "pokemon image",
                 placeholder = null,
                 error = painterResource(id = R.drawable.error_image),
-                modifier = Modifier.size(180.dp).padding(end = 16.dp),
+                modifier = Modifier.size(180.dp).padding(end = 16.dp).testTag("pokemonImage"),
                 contentScale = ContentScale.Crop
             )
         }
