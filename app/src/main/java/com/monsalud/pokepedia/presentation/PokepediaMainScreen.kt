@@ -40,11 +40,11 @@ fun PokepediaMainScreen(
     var recomposeCounter by remember { mutableStateOf(0) }
 
     LaunchedEffect(pokemonListState) {
-        Timber.d("****PokemonListState updated in the screen composable. Size: ${pokemonListState.size}")
+        Timber.d("****pokemonListState updated in the screen composable. Size: ${pokemonListState.size}")
     }
 
     LaunchedEffect(filterText) {
-        Timber.d("****FilterText updated in the screen composable. Value: $filterText")
+        Timber.d("****filterText updated in the screen composable. Value: $filterText")
     }
 
     LaunchedEffect(Unit) {
@@ -73,7 +73,6 @@ fun PokepediaMainScreen(
                 ) { clickedPokemon ->
                         navController.navigate(Screen.DetailScreen.createRoute(clickedPokemon))
                     }
-
                 }
             item {
                 if (!isLoading && pokemonListState.isNotEmpty()) {
