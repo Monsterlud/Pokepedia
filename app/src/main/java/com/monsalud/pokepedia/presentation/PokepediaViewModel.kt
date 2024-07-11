@@ -74,13 +74,15 @@ class PokepediaViewModel(
 
     fun loadNextPage() {
         if (_isInitialLoading.value) return
-
+        _isInitialLoading.value = true
         viewModelScope.launch {
             try {
                 loadPage()
                 updateFilteredPokemon()
             } catch (e: Exception) {
                 Timber.e(e, "Error loading next page")
+            } finally {
+                _isInitialLoading.value = false
             }
         }
     }
