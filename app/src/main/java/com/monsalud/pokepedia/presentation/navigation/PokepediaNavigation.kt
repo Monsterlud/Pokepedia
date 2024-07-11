@@ -19,7 +19,8 @@ import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun PokepediaNavigation(
-    innerPadding: PaddingValues
+    innerPadding: PaddingValues,
+    onScreenChange: (Screen) -> Unit,
 ) {
     val navController = rememberNavController()
     val systemUiController = rememberSystemUiController()
@@ -43,6 +44,7 @@ fun PokepediaNavigation(
                 innerPadding = innerPadding,
                 viewModel = viewModel,
             )
+            onScreenChange(Screen.MainScreen)
         }
         composable(
             route = Screen.DetailScreen.route,
@@ -68,6 +70,7 @@ fun PokepediaNavigation(
             val image = Uri.decode(imageEncoded)
             val stats = Uri.decode(statsEncoded)
             PokemonDetailScreen(Pokemon(id, name, weight, height, type, image, stats), innerPadding)
+            onScreenChange(Screen.DetailScreen)
         }
     }
 }

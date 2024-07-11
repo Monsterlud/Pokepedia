@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.monsalud.pokepedia.data.datasource.utils.EntityMappers
 import com.monsalud.pokepedia.domain.Pokemon
 import com.monsalud.pokepedia.domain.PokepediaRepository
+import com.monsalud.pokepedia.presentation.navigation.Screen
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -33,11 +34,18 @@ class PokepediaViewModel(
     private val _filteredPokemon = MutableStateFlow<List<Pokemon>>(emptyList())
     val filteredPokemon = _filteredPokemon.asStateFlow()
 
+    private val _currentScreen = MutableStateFlow<Screen>(Screen.MainScreen)
+    val currentScreen = _currentScreen.asStateFlow()
+
     private var currentPage = 0
     private val pageSize = 10
 
     init {
         loadInitialPage()
+    }
+
+    fun setCurrentScreen(screen: Screen) {
+        _currentScreen.value = screen
     }
 
     fun clearFilter() {

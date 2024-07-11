@@ -28,6 +28,7 @@ import com.monsalud.pokepedia.ui.theme.pokeDarkBlue
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokepediaTopAppBar(
+    showSearchIcon: Boolean,
     showSearch: Boolean,
     filterText: String,
     onFilterChange: (String) -> Unit,
@@ -67,6 +68,7 @@ fun PokepediaTopAppBar(
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = pokeDarkBlue),
         actions = {
+            if (showSearchIcon) {
                 IconButton(
                     onClick = onToggleSearch // Use the callback
                 ) {
@@ -76,6 +78,7 @@ fun PokepediaTopAppBar(
                         tint = MaterialTheme.colorScheme.onPrimary
                     )
                 }
+            }
         }
     )
 }
