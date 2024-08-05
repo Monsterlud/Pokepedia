@@ -8,30 +8,30 @@ Clicking the card takes you to the detail screen, which contains additional info
 weight, height, etc). 
 
 ## Discussion of Architecture, Frameworks, and Libraries
-For this app I chose to use some more modern Android Frameworks and Libraries. For the UI I am
+For this app I chose to use modern Android Frameworks and Libraries. For the UI I am
 using Jetpack Compose and Material 3 components. I also imported fonts using Google Fonts and am 
-using Coil to load the images using AsyncImage. I am using Compose Navigation for navigation purposes. 
+using Coil to load the images using AsyncImage. I chose Compose Navigation for navigation purposes. 
 
-For interacting with the API I chose to use Ktor as an HTTP Client and for serialization. I am also
-using Google Gson for this application.
+For interacting with the API I am using Ktor as an HTTP Client. I am using Google Gson for 
+serialization purposes.
 
 For local storage I implemented a simple Room Database and DAO. The repository gets the API 
-download of Pokemon and immediately saves it to Room. Then, the UI grabs that list, utilizing a
-unidirectional data flow using Kotlin Flows.
+download of Pokemon and immediately saves it to Room. The UI gets that list from Room whenever it is 
+updated, utilizing a unidirectional data flow that is initiated using Kotlin Flows.
 
-For dependency injection I used Koin, which has a module defined and is started in the Application
-class. 
+For dependency injection I used Koin. There is a dependency graph defined in the AppModule, which is 
+started in the Application class. 
 
 For testing I added a few libraries such as MockK, Espresso, and KotlinX Coroutines Test.
 
 ![pokepedia_main_screen](images/pokepedia_main_screen.png)
 ![pokepedia_details](images/pokepedia_details.png)
 
-For architecture I tried to keep a separation of concerns and a clean delineation between layers.
-In this app I have Presentation (Composables, ViewModel), Domain(Model, Repository Interface), and 
-Data (RepositoryImpl, LocalDataSource and RemoteDataSource Interfaces). One layer down from there
-I have DataSource, which contains the LocalDataSourceImpl, RemoteDataSourceImpl, and Room 
-Implementation.
+The architecture that I chose is based on the MVVM pattern that Google recommends. I tried to keep a 
+separation of concerns and a clean delineation between layers to promote scalability. There are 
+Presentation (Composables, ViewModel), Domain(Model, Repository Interface), and Data (RepositoryImpl, 
+LocalDataSource and RemoteDataSource Interfaces) layers. Within the Data layer is a DataSource 
+package, which contains the LocalDataSourceImpl, RemoteDataSourceImpl, and Room Implementation.
 
 ## Instructions for running Pokepedia
 After opening the app with an IDE (Android Studio or IntelliJ) make sure these settings are used:
