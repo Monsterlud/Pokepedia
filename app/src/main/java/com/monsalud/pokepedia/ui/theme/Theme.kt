@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val LightColorScheme = lightColorScheme(
     primary = pokeDarkBlue,
@@ -26,6 +27,7 @@ private val DarkColorScheme = darkColorScheme(
     primary = pokeDarkBlue,
     secondary = pokeLightBlue,
     tertiary = pokeAccent,
+    onPrimary = Color.White,
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),

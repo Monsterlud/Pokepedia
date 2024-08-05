@@ -37,11 +37,18 @@ class PokepediaViewModel(
     private val _currentScreen = MutableStateFlow<Screen>(Screen.MainScreen)
     val currentScreen = _currentScreen.asStateFlow()
 
+    private val _shouldNavigateBack = MutableStateFlow(false)
+    val shouldNavigateBack = _shouldNavigateBack.asStateFlow()
+
     private var currentPage = 0
     private val pageSize = 10
 
     init {
         loadInitialPage()
+    }
+
+    fun updateShouldNavigateBack(shouldNavigate: Boolean) {
+        _shouldNavigateBack.value = shouldNavigate
     }
 
     fun setCurrentScreen(screen: Screen) {
@@ -71,10 +78,9 @@ class PokepediaViewModel(
             }
         }
     }
-
     fun loadNextPage() {
         if (_isInitialLoading.value) return
-        _isInitialLoading.value = true
+//        _isInitialLoading.value = true
         viewModelScope.launch {
             try {
                 loadPage()
@@ -82,10 +88,11 @@ class PokepediaViewModel(
             } catch (e: Exception) {
                 Timber.e(e, "Error loading next page")
             } finally {
-                _isInitialLoading.value = false
+//                _isInitialLoading.value = false
             }
         }
     }
+
 
     private fun updateFilteredPokemon() {
         val currentFilter = _filterText.value

@@ -51,20 +51,24 @@ fun PokemonItem(
                 Row(
 
                 ) {
-                    Text(text = "Id: ")
+                    Text(text = "Id: ",
+                        color = MaterialTheme.colorScheme.onPrimary)
                     Text(
                         text = pokemon.id.toString(),
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
                 Row() {
                     Text(
                         text = "Pokemon Name: ",
-                        fontFamily = pokemonPlaywriteLightFontFamily
+                        fontFamily = pokemonPlaywriteLightFontFamily,
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                     Text(
                         text = pokemon.name,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = pokemonPlaywriteLightFontFamily
+                        fontFamily = pokemonPlaywriteLightFontFamily,
+                        color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
             }

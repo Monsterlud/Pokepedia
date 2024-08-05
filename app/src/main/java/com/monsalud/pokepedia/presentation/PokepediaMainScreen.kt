@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
@@ -65,6 +66,7 @@ fun PokepediaMainScreen(
                 .testTag("PokemonList"),
             contentPadding = PaddingValues(0.dp),
             verticalArrangement = Arrangement.spacedBy(0.dp),
+            state = remember { LazyListState() }
         ) {
             items(items = pokemonListState, key = { pokemon -> pokemon.id }) { pokemon ->
                 PokemonItem(

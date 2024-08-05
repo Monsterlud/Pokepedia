@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -26,6 +27,7 @@ fun PokepediaNavigation(
     val systemUiController = rememberSystemUiController()
     val statusBarColor = MaterialTheme.colorScheme.primary
     val viewModel: PokepediaViewModel = getViewModel()
+    val keyboardController = LocalSoftwareKeyboardController.current
 
     SideEffect {
         systemUiController.setSystemBarsColor(
@@ -69,8 +71,13 @@ fun PokepediaNavigation(
             val statsEncoded = backStackEntry.arguments?.getString("pokemonStatsEncoded") ?: "Unknown Stats"
             val image = Uri.decode(imageEncoded)
             val stats = Uri.decode(statsEncoded)
-            PokemonDetailScreen(Pokemon(id, name, weight, height, type, image, stats), innerPadding)
+            PokemonDetailScreen(
+                Pokemon(id, name, weight, height, type, image, stats),
+                innerPadding,
+            )
+
             onScreenChange(Screen.DetailScreen)
+            keyboardController?.hide()
         }
     }
 }

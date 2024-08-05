@@ -17,7 +17,11 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
@@ -32,32 +36,40 @@ fun PokepediaTopAppBar(
     showSearch: Boolean,
     filterText: String,
     onFilterChange: (String) -> Unit,
-    onSearchTriggered: () -> Unit, // Callback for search action
+    onSearchTriggered: (String) -> Unit, // Callback for search action
     onToggleSearch: () -> Unit, // Callback to toggle search
+    currentScreen: String,
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
+    val focusRequester = remember { FocusRequester() }
 
     TopAppBar(
         title = {
-            if (showSearch) {
+            if (showSearch && currentScreen == "main") {
                 TextField(
                     value = filterText,
                     onValueChange = onFilterChange,
                     placeholder = { Text("Search Pokemon") },
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusRequester(focusRequester),
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                     keyboardActions = KeyboardActions(onSearch = {
-                        onSearchTriggered() // Trigger the search
+                        onSearchTriggered(filterText)
                         keyboardController?.hide()
                     }),
                     colors = TextFieldDefaults.textFieldColors(
                         containerColor = Color.Transparent,
                         focusedTextColor = MaterialTheme.colorScheme.onPrimary,
+                        unfocusedTextColor = MaterialTheme.colorScheme.tertiary,
                         focusedPlaceholderColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f),
                         cursorColor = MaterialTheme.colorScheme.onPrimary
                     ),
                 )
+                LaunchedEffect(Unit) {
+                    focusRequester.requestFocus()
+                }
             } else {
                 Text(
                     text = stringResource(R.string.app_name),
@@ -66,6 +78,16 @@ fun PokepediaTopAppBar(
                 )
             }
         },
+//        navigationIcon = {
+//            if (currentScreen != "main") {
+//                IconButton(onClick = { viewModel.updateShouldNavigateBack(true) }) {
+//                    Icon(
+//                        imageVector = Icons.Filled.ArrowBack,
+//                        contentDescription = "Back"
+//                    )
+//                }
+//            }
+//        },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = pokeDarkBlue),
         actions = {
             if (showSearchIcon) {
