@@ -16,7 +16,7 @@ class PokemonEntity(
     @ColumnInfo(name = "height")
     var height: Int = 0,
     @ColumnInfo(name = "type")
-    var type: String = "",
+    var types: String = "",
     @ColumnInfo(name = "image")
     var image: String = "",
     @ColumnInfo(name = "stats")

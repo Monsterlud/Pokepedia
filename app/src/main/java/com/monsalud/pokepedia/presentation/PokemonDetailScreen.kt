@@ -144,7 +144,7 @@ fun PokemonDetailScreen(
                 modifier = Modifier.padding(start = 16.dp)
             ) {
                 Text(
-                    text = "Type: ",
+                    text = "Types: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -163,7 +163,7 @@ fun PokemonDetailScreen(
                 modifier = Modifier.padding(start = 16.dp)
             ) {
                 Text(
-                    text = "stats: ",
+                    text = "Stats: ",
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,

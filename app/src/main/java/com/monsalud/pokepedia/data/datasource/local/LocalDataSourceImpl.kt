@@ -15,7 +15,7 @@ class LocalDataSourceImpl(
 ) : LocalDataSource {
 
     override suspend fun savePokemon(entity: PokemonEntity) {
-        Timber.d("***Entity saving to Room Database: ${entity.id}, ${entity.name}, ${entity.weight}, ${entity.height}, ${entity.type}, ${entity.image}, ${entity.stats}")
+        Timber.d("***Entity saving to Room Database: ${entity.id}, ${entity.name}, ${entity.weight}, ${entity.height}, ${entity.types}, ${entity.image}, ${entity.stats}")
         pokepediaDAO.addPokemonToRoom(entity)
     }
 

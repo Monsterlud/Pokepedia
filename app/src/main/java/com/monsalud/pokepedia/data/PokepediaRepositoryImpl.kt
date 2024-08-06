@@ -43,7 +43,7 @@ class PokepediaRepositoryImpl(
                     gson.fromJson(detailedPokemonJson, PokemonDTO::class.java)
                 Timber.d("***detailedPokemonDTO: $detailedPokemonDTO")
                 val pokemonEntity = entityMapper.mapFromDtoToEntity(detailedPokemonDTO)
-                Timber.d("***pokemonEntity: ${pokemonEntity.id}, ${pokemonEntity.name}, ${pokemonEntity.weight}, ${pokemonEntity.height}, ${pokemonEntity.type}, ${pokemonEntity.image}, ${pokemonEntity.stats}")
+                Timber.d("***pokemonEntity: ${pokemonEntity.id}, ${pokemonEntity.name}, ${pokemonEntity.weight}, ${pokemonEntity.height}, ${pokemonEntity.types}, ${pokemonEntity.image}, ${pokemonEntity.stats}")
                 localDataSource.savePokemon(pokemonEntity)
             }
         }
