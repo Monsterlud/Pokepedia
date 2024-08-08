@@ -8,10 +8,11 @@ class EntityMappers : ObjectMappers<PokemonDTO, PokemonEntity> {
 
     override fun mapFromDtoToEntity(dto: PokemonDTO): PokemonEntity {
         // Convert the list of types to a comma-separated string
-        val typesString = dto.types.joinToString(",") { it.type.name }
+        val typesString = dto.types.joinToString(", ") { it.type.name }
 
-        // Convert the list of stats to a comma-separated string
-        val statsString = dto.stats.joinToString(",") { it.stat.name }
+        // Combine the stats name and value into a comma-separated string
+        val combinedStatsString = dto.stats.joinToString(", ") { "${it.stat.name}: ${it.base_stat}" }
+
         return PokemonEntity(
             id = dto.id,
             name = dto.name,
@@ -19,39 +20,20 @@ class EntityMappers : ObjectMappers<PokemonDTO, PokemonEntity> {
             height = dto.height,
             types = typesString,
             image = dto.sprites.front_default,
-            stats = statsString,
+            stats = combinedStatsString,
         )
     }
 
     override fun mapFromEntityToPokemon(entity: PokemonEntity): Pokemon {
-        val typesList = entity.types.split(",")
-        val statsList = entity.stats.split(",")
 
         return Pokemon(
             id = entity.id,
             name = entity.name,
             weight = entity.weight,
             height = entity.height,
-            type = typesList.joinToString(", "),
+            types = entity.types,
             image = entity.image,
-            stats = statsList.joinToString(", "),
+            stats = entity.stats,
         )
     }
-
-    override fun mapFromPokemonoToEntity(pokemon: Pokemon): PokemonEntity {
-        // Convert the list of types and stats to comma-separated strings
-        val typesString = pokemon.type.split(", ").joinToString(",")
-        val statsString = pokemon.stats.split(", ").joinToString(",")
-
-        return PokemonEntity(
-            id = pokemon.id,
-            name = pokemon.name,
-            weight = pokemon.weight,
-            height = pokemon.height,
-            types = typesString,
-            image = pokemon.image,
-            stats = statsString,
-        )
-    }
-
 }

@@ -35,7 +35,7 @@ fun PokemonDetailScreen(
     pokemon: Pokemon,
     innerPadding: PaddingValues
 ) {
-    Timber.d("Pokemon received: name = ${pokemon.name}, type = ${pokemon.type}")
+    Timber.d("Pokemon received: name = ${pokemon.name}, type = ${pokemon.types}")
 
     Box(
         modifier = Modifier
@@ -151,11 +151,11 @@ fun PokemonDetailScreen(
                     modifier = Modifier.testTag("typeLabel")
                 )
                 Text(
-                    text = pokemon.type,
+                    text = pokemon.types,
                     color = MaterialTheme.colorScheme.primary,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.testTag("typeValue")
+                    modifier = Modifier.testTag("typeValues")
                 )
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -169,13 +169,15 @@ fun PokemonDetailScreen(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.testTag("statsLabel")
                 )
-                Text(
-                    text = pokemon.stats,
-                    color = MaterialTheme.colorScheme.primary,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.testTag("statsValue")
-                )
+                Column {
+                    Text(
+                        text = pokemon.stats,
+                        color = MaterialTheme.colorScheme.primary,
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.testTag("statsValues")
+                    )
+                }
             }
             Spacer(modifier = Modifier.height(16.dp))
             AsyncImage(
@@ -186,7 +188,10 @@ fun PokemonDetailScreen(
                 contentDescription = "pokemon image",
                 placeholder = null,
                 error = painterResource(id = R.drawable.error_image),
-                modifier = Modifier.size(180.dp).padding(end = 16.dp).testTag("pokemonImage"),
+                modifier = Modifier
+                    .size(180.dp)
+                    .padding(end = 16.dp)
+                    .testTag("pokemonImage"),
                 contentScale = ContentScale.Crop
             )
         }

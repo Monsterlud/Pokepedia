@@ -9,7 +9,7 @@ sealed class Screen(val route: String) {
         fun createRoute(pokemon: Pokemon): String {
             val encodedImage = Uri.encode(pokemon.image)
             val encodedStats = Uri.encode(pokemon.stats)
-            return "detail/${pokemon.id}/${pokemon.name}/${pokemon.weight}/${pokemon.height}/${pokemon.type}/$encodedImage/$encodedStats"
+            return "detail/${pokemon.id}/${pokemon.name}/${pokemon.weight}/${pokemon.height}/${pokemon.types}/$encodedImage/$encodedStats"
         }
     }
 }

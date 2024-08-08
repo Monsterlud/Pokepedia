@@ -10,5 +10,4 @@ interface ObjectMappers<PokemonDTO, PokemonEntity> {
 
     fun mapFromEntityToPokemon(entity: PokemonEntity) : Pokemon
 
-    fun mapFromPokemonoToEntity(pokemon: Pokemon) : PokemonEntity
 }

@@ -8,7 +8,7 @@ data class Pokemon(
     val name: String,
     val weight: Int,
     val height: Int,
-    val type: String,
+    val types: String,
     val image: String,
     val stats: String,
 )

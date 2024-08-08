@@ -28,7 +28,7 @@ class PokemonDetailScreenKtTest {
 
     @Test
     fun testBasicPokemonInfoDisplayed() {
-        val testPokemon = Pokemon(1, "Bulbasaur", 69, 7, "grass", "https://example.com/image.png", "HP: 45, Attack: 49")
+        val testPokemon = Pokemon(1, "Bulbasaur", 69, 7, "grass, dirt", "https://example.com/image.png", "HP: 45, Attack: 49")
 
         composeTestRule.setContent {
             TestablePokemonDetailScreen(pokemon = testPokemon)
@@ -62,9 +62,9 @@ class PokemonDetailScreenKtTest {
             .assertTextEquals("7")
 
         composeTestRule.onNodeWithTag("typeLabel").assertIsDisplayed()
-            .assertTextEquals("Type: ")
-        composeTestRule.onNodeWithTag("typeValue").assertIsDisplayed()
-            .assertTextEquals("grass")
+            .assertTextEquals("Types: ")
+        composeTestRule.onNodeWithTag("typeValues").assertIsDisplayed()
+            .assertTextEquals("grass, dirt")
 
         composeTestRule.onNodeWithTag("pokemonImage").assertIsDisplayed()
     }
